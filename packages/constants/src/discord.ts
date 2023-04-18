@@ -63,9 +63,11 @@ export const ENABLE_AI_QUESTION_ANSWERING_LABEL =
 	'Enable AI question answering';
 export const ENABLE_AI_QUESTION_IMPROVEMENT_SUGGESTIONS_LABEL =
 	'Enable AI question improvement suggestions';
+export const OPEN_QUICK_START_MENU_LABEL = 'Start Guide';
 export const OPEN_INDEXING_SETTINGS_MENU_LABEL = 'Indexing settings';
 export const OPEN_HELP_CHANNEL_UTILITIES_LABEL = 'Help channel utilities';
 export const OPEN_EXPERIMENTAL_SETTINGS_LABEL = 'Experimental settings';
 export const SEND_CONSENT_PROMPT_LABEL = 'Send consent prompt';
 export const CLEAR_TAG_LABEL = '(Clear)';
 export const DISCORD_EMOJI_ID = '<:discord_icon_white:1094373667653288027>';
+

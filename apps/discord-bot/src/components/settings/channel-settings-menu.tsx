@@ -61,13 +61,15 @@ import type { RootChannel } from '~discord-bot/utils/utils';
 import { sendConsentPrompt } from '~discord-bot/domains/manage-account';
 import { Message, getDiscordURLForMessage } from '@answeroverflow/db';
 
-type ChannelSettingsMenuItemProps<T extends RootChannel = RootChannel> = {
-	channelInDB: ChannelWithFlags;
-	setChannel: (channel: ChannelWithFlags) => void;
-	targetChannel: T;
-};
+export type ChannelSettingsMenuItemProps<T extends RootChannel = RootChannel> =
+	{
+		channelInDB: ChannelWithFlags;
+		setChannel: (channel: ChannelWithFlags) => void;
+		targetChannel: T;
+		onUpdateCallback?: () => void;
+	};
 
-type ChannelSettingsSubMenuProps = {
+export type ChannelSettingsSubMenuProps = {
 	initialChannelData: ChannelWithFlags;
 	targetChannel: RootChannel;
 };
@@ -90,10 +92,11 @@ const updateChannelState = (
   Indexing Menu
 */
 
-function ToggleIndexingButton({
+export function ToggleIndexingButton({
 	channelInDB,
 	setChannel,
 	targetChannel,
+	onUpdateCallback,
 }: ChannelSettingsMenuItemProps) {
 	return (
 		<ToggleButton
@@ -110,6 +113,7 @@ function ToggleIndexingButton({
 						Error: (message) => oneTimeStatusHandler(interaction, message),
 						Ok: (updatedChannel) => {
 							updateChannelState(setChannel, updatedChannel);
+							onUpdateCallback?.();
 						},
 					});
 				})
@@ -238,7 +242,7 @@ export function IndexingSettingsMenu({
   Help Channel Utilities Menu
 */
 
-function ToggleMarkAsSolutionButton({
+export function ToggleMarkAsSolutionButton({
 	channelInDB,
 	setChannel,
 	targetChannel,
@@ -340,7 +344,7 @@ function SelectMarkAsSolvedTag({
 	);
 }
 
-function ToggleAutoThreadButton({
+export function ToggleAutoThreadButton({
 	channelInDB,
 	setChannel,
 	targetChannel,
